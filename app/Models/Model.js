@@ -62,11 +62,15 @@ module.exports = class Model {
   static async find(where, options = {}) {
     options = this.fixQueryOptions(options)
     const data = await this.col.find(where, options).toArray()
-    const ret = []
+    const ret = new Set()
     for (let row of data) {
       ret.push(new this(row))
     }
     return ret
+  }
+
+  static dataset () {
+    return new Set()
   }
 
   toJSON() {
