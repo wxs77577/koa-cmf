@@ -15,11 +15,11 @@ app.use(router.routes(), router.allowedMethods())
 const Model = require('./Models/Model')
 Model.initConnection().then(async () => {
   const Course  = require('./Models/Course')
-  const model = await Course.find({id: 5})
+  const model = await Model.setCollectionName('ads').find()
   if (!model) {
     return console.error('404')
   }
-  console.log(model.toJSON(), model.name)
+  console.log(model)
 })
 
 async function main () {

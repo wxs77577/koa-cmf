@@ -28,6 +28,7 @@ module.exports = class Model {
 
   static setCollectionName(name) {
     this._collectionName = name
+    return this
   }
   static get collectionName() {
     return this._collectionName || inflection.pluralize(inflection.underscore(this.name))
@@ -47,7 +48,7 @@ module.exports = class Model {
   }
 
   static fixQueryOptions(options) {
-    if (!options.projection) {
+    if ( !options.projection && this.listFields.length > 0) {
       options.projection = this.listFields
     }
     return options
@@ -64,7 +65,7 @@ module.exports = class Model {
     const data = await this.col.find(where, options).toArray()
     const ret = new Set()
     for (let row of data) {
-      ret.push(new this(row))
+      ret.add(new this(row))
     }
     return ret
   }
