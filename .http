@@ -2,8 +2,21 @@
 @api = http://localhost:7777/api/
 @json = Content-Type: application/json
 @ajson = Accept: application/json
+@auth = Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhODZhNzdkZGZlYTlkNzhhMzVkOTFlZiIsImlhdCI6MTUyNjQ4NjQyNH0.yfmzJNu2oA6yGmZGIvkq2y2TX1kVZMWx6ohKPjkTwdM
 ###
 GET {{api}}courses?query={"page":2}
+{{auth}}
+###
+GET {{api}}courses/5a2f6f098c4dab069a287f57
+{{auth}}
+###
+POST {{api}}login
+{{json}}
+
+{
+  "mobile": "17621443042",
+  "password": "123456"
+}
 ###
 GET {{api}}posts
 

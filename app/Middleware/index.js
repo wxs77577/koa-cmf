@@ -1,15 +1,9 @@
-const query = async (ctx, next) => {
-  try {
-    ctx.query = JSON.parse(ctx.request.query.query)
-  } catch (e) {}
-  await next()
-}
-const resource = async (ctx, next) => {
-  ctx.resource = ctx.params.resource
-  await next()
-}
+const query = require('./query')
+const resource = require('./resource')
+const auth = require('./auth')
 
 module.exports = {
+  auth,
   query,
   resource
 }
