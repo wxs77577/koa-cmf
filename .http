@@ -1,0 +1,10 @@
+@base = http://localhost:7777
+@api = http://localhost:7777/api/
+@json = Content-Type: application/json
+@ajson = Accept: application/json
+###
+GET {{api}}courses?query={"page":2}
+###
+GET {{api}}posts
+
+###
